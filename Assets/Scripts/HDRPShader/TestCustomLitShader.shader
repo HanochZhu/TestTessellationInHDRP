@@ -12,18 +12,9 @@
     #pragma target 5.0
     #pragma only_renderers d3d11 ps4 xboxone vulkan metal switch
     //#define UNITY_STEREO_MULTIVIEW_ENABLED
-    #define Max3 max3
+    //#define Max3 max3
     #define TESSELLATION_ON
-    //#define HAVE_TESSELLATION_MODIFICATION
-    // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/API/Vulkan.hlsl"
-    // //#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/API/PSSL.hlsl"
-    // #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariables.hlsl"
-    // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
-    // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
-    // #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
-    // #include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderVariablesMatrixDefsHDCamera.hlsl"
 
-    //#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/TessellationShare.hlsl"
     #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
     #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/GeometricTools.hlsl"
     #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Tessellation.hlsl"
@@ -63,7 +54,8 @@
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 
-            #define HAS_LIGHTLOOP
+            //#define HAS_LIGHTLOOP
+            #pragma multi_compile HAS_LIGHTLOOP
 
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Lighting/LightLoop/LightLoopDef.hlsl"
             #include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.hlsl"
@@ -81,12 +73,6 @@
             #pragma hull MyHull
             #pragma domain MyDomain
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _Tess;
@@ -98,7 +84,7 @@
             {
                 float3 camearRWS = _WorldSpaceCameraPos;//GetPrimaryCameraPosition();
                 float3 distFactor = GetDistanceBasedTessFactor(p0, p1, p2, camearRWS, _TessellationFactorMinDistanceC, _TessellationFactorMaxDistanceC);  // Use primary camera view
-                float3 factor = distFactor * distFactor * 5 * _Tess;
+                float3 factor = distFactor * distFactor * _Tess;
                 factor = max(factor, float3(1.0, 1.0, 1.0));
                 return CalcTriTessFactorsFromEdgeTessFactors(factor);
             }
