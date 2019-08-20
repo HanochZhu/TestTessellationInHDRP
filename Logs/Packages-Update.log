@@ -1,0 +1,8 @@
+
+=== Tue Aug 20 16:18:24 2019
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were removed:
+  com.unity.render-pipelines.high-definition@5.7.2-preview
