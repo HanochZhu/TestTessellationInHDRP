@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestHDRPSurfTess
-  m_Shader: {fileID: 4800000, guid: bcc4f549c63f54e7c8960bda137a93e7, type: 3}
+  m_Name: TestHDRPLitTess
+  m_Shader: {fileID: 4800000, guid: 78e3046a547574272aef61acb4c350bb, type: 3}
   m_ShaderKeywords: _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
